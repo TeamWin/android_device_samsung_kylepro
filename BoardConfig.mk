@@ -14,6 +14,8 @@ TARGET_BOOTLOADER_BOARD_NAME := hawaii
 
 # Kernel
 TARGET_KERNEL_CONFIG := bcm21664_hawaii_ss_kyleproxx_rev00_recovery_defconfig
+TARGET_KERNEL_HAVE_EXFAT := true
+TARGET_KERNEL_HAVE_NTFS := true
 TARGET_KERNEL_SOURCE := kernel/samsung/kyleproxx
 BOARD_MKBOOTIMG_ARGS := --kernel_offset 0x00008000 --ramdisk_offset 0x01000000 --tags_offset 0x00000100
 BOARD_KERNEL_BASE := 0x82000000
@@ -21,12 +23,13 @@ BOARD_KERNEL_PAGESIZE := 4096
 BOARD_KERNEL_OFFSET := 0x00008000
 BOARD_RAMDISK_OFFSET := 0x01000000
 BOARD_KERNEL_TAGS_OFFSET := 0x00000100
-ifeq($(HOST_OS), darwin)
+ifeq ($(HOST_OS), darwin)
 KERNEL_TOOLCHAIN := $(ANDROID_BUILD_TOP)/prebuilts/gcc/darwin-x86/arm/arm-eabi-4.7/bin
 else
 KERNEL_TOOLCHAIN := $(ANDROID_BUILD_TOP)/prebuilts/gcc/linux-x86/arm/arm-eabi-4.7/bin
 endif
 KERNEL_TOOLCHAIN_PREFIX := arm-eabi-
+
 # File system
 TARGET_USERIMAGES_USE_EXT4 := true
 BOARD_BOOTIMAGE_PARTITION_SIZE := 8388608
@@ -61,4 +64,3 @@ TW_CUSTOM_BATTERY_PATH := /sys/class/power_supply/battery
 TW_BRIGHTNESS_PATH := /sys/class/backlight/panel/brightness
 TW_NO_CPU_TEMP := true
 TW_MAX_BRIGHTNESS := 255
-TW_HAS_DOWNLOAD_MODE := true
